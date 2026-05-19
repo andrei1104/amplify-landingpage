@@ -1622,6 +1622,45 @@
     border-color: var(--cyan);
     background: var(--cyan);
   }
+  /* multi-select: square markers + checkmark */
+  .q-options.is-multi .q-option .marker { border-radius: 6px; }
+  .q-options.is-multi .q-option.selected .marker {
+    background: var(--cyan);
+  }
+  .q-options.is-multi .q-option.selected .marker::after {
+    content: "";
+    position: absolute;
+    top: 3px; left: 7px;
+    width: 6px; height: 11px;
+    border: solid var(--ink);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    background: transparent;
+    border-radius: 0;
+  }
+
+  /* "Outro" text field shown after option selected */
+  .q-other {
+    margin-top: 12px;
+    animation: fadeUp .25s cubic-bezier(.2,.8,.3,1);
+  }
+  .q-other input {
+    width: 100%;
+    background: rgba(37, 244, 238, .06);
+    color: var(--paper);
+    border: 1px solid var(--cyan);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    transition: background .15s ease;
+  }
+  .q-other input::placeholder { color: rgba(255,255,255,.4); }
+  .q-other input:focus {
+    outline: none;
+    background: rgba(37, 244, 238, .12);
+  }
+
   .q-option.selected .marker::after {
     content: "";
     position: absolute;
@@ -1999,8 +2038,7 @@
 <section class="results" data-screen-label="Case Max Titanium">
   <div class="wrap">
     <div class="hd">
-      <div class="eyebrow" style="color: var(--cyan); opacity:1;">/ 01 · Case real</div>
-      <h2 style="margin-top: 14px;">
+      <h2 style="margin-top: 0;">
         Como fizemos a <span class="it">Max&nbsp;Titanium</span><br/>
         faturar <mark class="hl">R$&nbsp;260&nbsp;mil</mark> em 3 dias.
       </h2>
@@ -2039,11 +2077,11 @@
         </div>
       </div>
       <div class="ba-card">
-        <div class="ba-label">Influencers ativos</div>
+        <div class="ba-label">Creators ativos</div>
         <div class="ba-row">
           <span class="before">16</span>
           <svg class="arr-r" width="36" height="14" viewBox="0 0 36 14" aria-hidden="true"><path d="M2 7H34M34 7L28 2M34 7L28 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-          <span class="after">96</span>
+          <span class="after">2.800</span>
         </div>
       </div>
       <div class="ba-card">
@@ -2051,7 +2089,7 @@
         <div class="ba-row">
           <span class="before">17</span>
           <svg class="arr-r" width="36" height="14" viewBox="0 0 36 14" aria-hidden="true"><path d="M2 7H34M34 7L28 2M34 7L28 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-          <span class="after">479</span>
+          <span class="after">3.300</span>
         </div>
       </div>
     </div>
@@ -2059,12 +2097,12 @@
     <!-- Other quick wins -->
     <div class="quick-wins">
       <div class="qw">
-        <div class="qw-num">R$&nbsp;266&nbsp;k</div>
+        <div class="qw-num">R$&nbsp;356&nbsp;k</div>
         <div class="qw-lbl">GMV gerado em uma única operação Squad <span class="sep">·</span> 4.171 pedidos pagos</div>
       </div>
       <div class="qw alt">
-        <div class="qw-num">+&nbsp;365&nbsp;mil</div>
-        <div class="qw-lbl">Produtos vendidos somando todas as marcas da rede Amplify</div>
+        <div class="qw-num">+&nbsp;9.000</div>
+        <div class="qw-lbl">Produtos vendidos da Max Titanium na operação com a Amplify</div>
       </div>
     </div>
   </div>
@@ -2075,8 +2113,7 @@
   <div class="wrap">
     <div class="hd">
       <div>
-        <div class="eyebrow" style="color: rgba(10,11,18,.55);">/ 02 · Marcas</div>
-        <h2 style="margin-top: 14px;">As marcas que escalaram <span class="serif-it">com a gente.</span></h2>
+        <h2 style="margin-top: 0;">As marcas que escalaram <span class="serif-it">com a gente.</span></h2>
       </div>
     </div>
 
@@ -2143,8 +2180,7 @@
 <!-- =================== FIT (Para quem é / não é) =================== -->
 <section class="fit" data-screen-label="Fit">
   <div class="wrap">
-    <div class="eyebrow" style="color: rgba(10,11,18,.55);">/ 03 · Diagnóstico</div>
-    <h2 style="margin-top: 14px;">Isso aqui <span class="serif-it">não é</span> pra todo mundo.</h2>
+    <h2 style="margin-top: 0;">Isso aqui <span class="serif-it">não é</span> pra todo mundo.</h2>
 
     <div class="fit-grid">
       <div class="fit-card good">
@@ -2221,7 +2257,6 @@
 <!-- =================== WHO (Amplify) =================== -->
 <section class="who" data-screen-label="Quem somos">
   <div class="wrap">
-    <div class="eyebrow" style="color: rgba(255,255,255,.55);">/ 04 · Quem somos</div>
     <div class="who-top">
       <div>
         <h2>
@@ -2286,8 +2321,7 @@
 <section class="method" data-screen-label="Método">
   <div class="wrap">
     <div class="hd">
-      <div class="eyebrow" style="color: rgba(10,11,18,.55);">/ 05 · Método</div>
-      <h2 style="margin-top: 14px;">
+      <h2 style="margin-top: 0;">
         Por que algumas marcas <span class="red">fazem milhões</span><br/>
         e outras <span class="serif-it">não?</span>
       </h2>
@@ -2343,8 +2377,7 @@
 <section class="team" data-screen-label="Time">
   <div class="wrap">
     <div class="team-hd">
-      <div class="eyebrow" style="color: var(--cyan); opacity:1;">/ 06 · Quem está por trás</div>
-      <h2 style="margin-top: 14px;">
+      <h2 style="margin-top: 0;">
         Um time que <span class="serif-it" style="color: var(--cyan);">vive</span> de criar resultado.
       </h2>
       <p class="lead">
@@ -2360,7 +2393,6 @@
 <!-- =================== FINAL CTA =================== -->
 <section class="final" data-screen-label="CTA Final">
   <div class="wrap-narrow">
-    <div class="eyebrow">/ 07 · Sua aplicação</div>
     <h2>
       Pronto pra transformar seu TikTok Shop em uma <span class="mark">máquina&nbsp;de&nbsp;vendas?</span>
     </h2>
@@ -2471,6 +2503,10 @@ const WHATSAPP_URL = "https://wa.me/5547997478858?text=Ol%C3%A1%2C+tudo+bem%3F+C
 document.getElementById("whatsappLink").href = WHATSAPP_URL;
 
 const QUESTIONS = [
+  { id: "conheceu", type: "choice", label: "Como você conheceu a Amplify?",
+    options: ["Mansão Live Shop (Vim pelos vídeos do evento)", "Instagram", "TikTok", "Página na internet", "Indicação", "Outros"],
+    hasOther: true, otherPlaceholder: "Conta pra gente onde nos conheceu", required: true },
+
   { id: "empresa",   type: "text",  label: "Qual o nome da sua empresa?", placeholder: "Ex: Sua Marca Ltda.", required: true },
   { id: "lead",      type: "text",  label: "Como você se chama?",         placeholder: "Nome completo", required: true },
   { id: "whats",     type: "tel",   label: "Qual o seu WhatsApp?",        placeholder: "(11) 99999-9999", required: true, help: "Com DDD. É por aqui que vamos te chamar." },
@@ -2478,7 +2514,9 @@ const QUESTIONS = [
   { id: "instagram", type: "text",  label: "Qual o Instagram da sua marca?", placeholder: "@suamarca", required: true },
 
   { id: "segmento", type: "choice", label: "Qual o segmento da sua marca?",
-    options: ["Suplementos", "Cosméticos", "Moda", "Utensílios domésticos", "Outro"], required: true },
+    help: "Pode selecionar mais de uma opção.",
+    options: ["Suplementos", "Cosméticos", "Moda", "Utensílios domésticos", "Outro"],
+    multi: true, hasOther: true, otherPlaceholder: "Qual segmento?", required: true },
 
   { id: "fabricante", type: "choice", label: "Você é o fabricante dos seus próprios produtos?",
     options: ["Sim", "Não"], required: true },
@@ -2542,14 +2580,19 @@ function renderSteps() {
     } else if (q.type === "textarea") {
       inner += `<div class="q-input"><textarea name="${q.id}" placeholder="${q.placeholder || ""}"></textarea></div>`;
     } else if (q.type === "choice") {
-      inner += `<div class="q-options">` +
-        q.options.map(opt => `
-          <button type="button" class="q-option" data-value="${opt.replace(/"/g, '&quot;')}">
+      inner += `<div class="q-options${q.multi ? ' is-multi' : ''}">` +
+        q.options.map(opt => {
+          const isOther = /^outros?$/i.test(opt);
+          return `
+          <button type="button" class="q-option" data-value="${opt.replace(/"/g, '&quot;')}"${isOther ? ' data-other-trigger' : ''}>
             <span class="marker"></span>
             <span>${opt}</span>
-          </button>
-        `).join("") +
+          </button>`;
+        }).join("") +
         `</div>`;
+      if (q.hasOther) {
+        inner += `<div class="q-other" data-other-field hidden><input type="text" name="${q.id}_outro" placeholder="${q.otherPlaceholder || 'Conte pra gente'}" autocomplete="off" /></div>`;
+      }
     }
     inner += `<div class="err" data-err></div>`;
 
@@ -2561,12 +2604,52 @@ function renderSteps() {
   modalBody.querySelectorAll(".q-option").forEach(btn => {
     btn.addEventListener("click", () => {
       const parent = btn.closest(".q-step");
-      parent.querySelectorAll(".q-option").forEach(b => b.classList.remove("selected"));
-      btn.classList.add("selected");
       const id = parent.dataset.id;
-      answers[id] = btn.dataset.value;
-      /* auto-advance for choice questions */
-      setTimeout(() => goNext(), 220);
+      const q  = QUESTIONS.find(x => x.id === id);
+      const isMulti = !!q.multi;
+
+      if (isMulti) {
+        btn.classList.toggle("selected");
+        const picked = [...parent.querySelectorAll(".q-option.selected")].map(b => b.dataset.value);
+        answers[id] = picked;
+      } else {
+        parent.querySelectorAll(".q-option").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        answers[id] = btn.dataset.value;
+      }
+
+      /* toggle 'other' text field */
+      if (q.hasOther) {
+        const otherField = parent.querySelector("[data-other-field]");
+        const otherSelected = !!parent.querySelector(".q-option[data-other-trigger].selected");
+        if (otherField) {
+          otherField.hidden = !otherSelected;
+          if (otherSelected) {
+            setTimeout(() => otherField.querySelector("input").focus(), 60);
+          } else {
+            const inp = otherField.querySelector("input");
+            inp.value = "";
+            delete answers[id + "_outro"];
+          }
+        }
+      }
+
+      /* auto-advance only for single-choice without 'other' selected */
+      if (!isMulti) {
+        const otherSelected = q.hasOther && btn.hasAttribute("data-other-trigger");
+        if (!otherSelected) setTimeout(() => goNext(), 220);
+      }
+    });
+  });
+
+  /* track typing in 'other' fields */
+  modalBody.querySelectorAll("[data-other-field] input").forEach(inp => {
+    inp.addEventListener("input", () => {
+      const parent = inp.closest(".q-step");
+      answers[parent.dataset.id + "_outro"] = inp.value.trim();
+    });
+    inp.addEventListener("keydown", e => {
+      if (e.key === "Enter") { e.preventDefault(); goNext(); }
     });
   });
 
@@ -2635,10 +2718,25 @@ function validateCurrent() {
   }
 
   if (q.type === "choice") {
-    if (q.required && !answers[q.id]) {
-      errEl.textContent = "Escolha uma opção.";
+    const val = answers[q.id];
+    const empty = q.multi ? (!Array.isArray(val) || val.length === 0) : !val;
+    if (q.required && empty) {
+      errEl.textContent = q.multi ? "Escolha pelo menos uma opção." : "Escolha uma opção.";
       errEl.classList.add("show");
       return false;
+    }
+    /* if 'other' is selected, require text */
+    if (q.hasOther) {
+      const otherSelected = q.multi
+        ? (Array.isArray(val) && val.some(v => /^outros?$/i.test(v)))
+        : (val && /^outros?$/i.test(val));
+      if (otherSelected && !(answers[q.id + "_outro"] && answers[q.id + "_outro"].length)) {
+        errEl.textContent = "Conta pra gente — preencha o campo acima.";
+        errEl.classList.add("show");
+        const inp = step.querySelector("[data-other-field] input");
+        if (inp) inp.focus();
+        return false;
+      }
     }
     return true;
   }
@@ -2706,6 +2804,7 @@ document.querySelectorAll("[data-open-form]").forEach(btn => {
     for (const k in answers) delete answers[k];
     modalBody.querySelectorAll(".q-option").forEach(b => b.classList.remove("selected"));
     modalBody.querySelectorAll("input, textarea").forEach(el => el.value = "");
+    modalBody.querySelectorAll("[data-other-field]").forEach(el => el.hidden = true);
     showStep(0);
   });
 });
