@@ -136,6 +136,12 @@
     display: block;
     height: 36px;
     width: auto;
+    /* thin black outline so the white "Amplify" text stays legible on any bg */
+    filter:
+      drop-shadow(0.5px 0 0 #000)
+      drop-shadow(-0.5px 0 0 #000)
+      drop-shadow(0 0.5px 0 #000)
+      drop-shadow(0 -0.5px 0 #000);
   }
   .logo-word {
     font-family: var(--display);
