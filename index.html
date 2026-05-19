@@ -132,11 +132,12 @@
     text-decoration: none;
     color: inherit;
   }
-  .logo-mark {
-    width: 40px;
-    height: 32px;
-    flex-shrink: 0;
+  .logo-img {
     display: block;
+    height: 32px;
+    width: auto;
+    /* logo art is dark — invert to white on the dark hero */
+    filter: brightness(0) invert(1);
   }
   .logo-word {
     font-family: var(--display);
@@ -597,7 +598,7 @@
     font-weight: 800;
   }
   .fit-card.good h3 .badge { background: var(--green); color: #fff; }
-  .fit-card.bad  h3 .badge { background: var(--paper); color: var(--ink); border: 1px solid var(--line-dark); }
+  .fit-card.bad  h3 .badge { background: var(--hot, #EA1A4E); color: #fff; border: none; }
   .fit-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
   .fit-list li {
     display: grid;
@@ -624,8 +625,8 @@
   .fit-list .x {
     width: 22px; height: 22px;
     border-radius: 50%;
-    background: rgba(0,0,0,.08);
-    color: var(--ink);
+    background: var(--hot, #EA1A4E);
+    color: #fff;
     display: inline-flex; align-items: center; justify-content: center;
     flex-shrink: 0;
     margin-top: 1px;
@@ -873,6 +874,23 @@
       inset 0 0 0 1px rgba(255,255,255,.06),
       0 1px 0 rgba(255,255,255,.08) inset,
       0 10px 30px -18px rgba(0,0,0,.45);
+  }
+  .bb-img {
+    display: block;
+  }
+  .bb-img-contain {
+    max-width: 78%;
+    max-height: 70%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .bb-img-cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .bb-content { text-align: center; line-height: 1; padding: 6px; }
 
@@ -1925,14 +1943,7 @@
   <div class="wrap">
     <nav class="nav">
       <a class="logo" href="#">
-        <!-- Amplify logo: two overlapping rounded triangles -->
-        <svg class="logo-mark" viewBox="0 0 60 50" fill="none" aria-hidden="true">
-          <g style="isolation:isolate">
-            <polygon points="5,5 5,45 39,25" fill="#1742E6" stroke="#1742E6" stroke-width="5" stroke-linejoin="round"/>
-            <polygon points="22,5 22,45 56,25" fill="#EA1A4E" stroke="#EA1A4E" stroke-width="5" stroke-linejoin="round" style="mix-blend-mode:multiply"/>
-          </g>
-        </svg>
-        <span class="logo-word">Amplify<span class="ugc">UGC</span></span>
+        <img class="logo-img" src="amplify-logo-new.png" alt="Amplify" />
       </a>
       <div class="nav-right">TikTok Shop · Brasil</div>
     </nav>
@@ -2045,7 +2056,7 @@
     <div class="quick-wins">
       <div class="qw">
         <div class="qw-num">R$&nbsp;266&nbsp;k</div>
-        <div class="qw-lbl">GMV gerado em uma única operação Squad UGC <span class="sep">·</span> 4.171 pedidos pagos</div>
+        <div class="qw-lbl">GMV gerado em uma única operação Squad <span class="sep">·</span> 4.171 pedidos pagos</div>
       </div>
       <div class="qw alt">
         <div class="qw-num">+&nbsp;365&nbsp;mil</div>
@@ -2069,71 +2080,40 @@
 
     <div class="brand-grid">
       <!-- MAX Titanium -->
-      <div class="brand-blob" style="background:#000">
-        <div class="bb-content">
-          <div class="bb-max">
-            <span class="m">M</span><span class="a">A</span><span class="x">X</span>
-          </div>
-          <div class="bb-max-sub">TITANIUM</div>
-        </div>
+      <div class="brand-blob" style="background:#fff">
+        <img src="brand-maxtitanium.png" alt="Max Titanium" class="bb-img bb-img-cover" loading="lazy" style="object-fit: contain; padding: 8%;" />
       </div>
       <!-- sallve -->
-      <div class="brand-blob" style="background:#1B1666">
-        <div class="bb-content">
-          <div class="bb-sallve">sallve</div>
-        </div>
+      <div class="brand-blob" style="background:#A8C7FA">
+        <img src="brand-sallve.png" alt="Sallve" class="bb-img bb-img-cover" loading="lazy" />
       </div>
       <!-- AURA BEAUTY -->
-      <div class="brand-blob" style="background:#5B3A22">
-        <div class="bb-content">
-          <div class="bb-aura">AURA</div>
-          <div class="bb-aura-sub">BEAUTY</div>
-        </div>
+      <div class="brand-blob" style="background:#EFE5D0">
+        <img src="brand-aura.png" alt="Aura Beauty" class="bb-img bb-img-contain" loading="lazy" />
       </div>
       <!-- Gummy Original -->
-      <div class="brand-blob" style="background:#F062A6">
-        <div class="bb-content">
-          <div class="bb-gummy">Gummy<sup>&reg;</sup></div>
-          <div class="bb-gummy-sub">Original</div>
-        </div>
+      <div class="brand-blob" style="background:#E81F76">
+        <img src="brand-gummy.png" alt="Gummy Original" class="bb-img bb-img-cover" loading="lazy" />
       </div>
       <!-- D.O.T -->
-      <div class="brand-blob" style="background:#3FAFC4">
-        <div class="bb-content">
-          <div class="bb-dot">
-            <span>D.</span><svg viewBox="0 0 20 28" width="14" height="22" aria-hidden="true"><path d="M12 0 L0 16 L8 16 L6 28 L20 10 L12 10 Z" fill="#FFD400"/></svg><span>.T</span>
-          </div>
-        </div>
+      <div class="brand-blob" style="background:#1FA2DD">
+        <img src="brand-dot.png" alt="D.O.T" class="bb-img bb-img-cover" loading="lazy" />
       </div>
       <!-- gocase -->
-      <div class="brand-blob" style="background:#A6195A">
-        <div class="bb-content">
-          <div class="bb-gocase">gocase</div>
-        </div>
+      <div class="brand-blob" style="background:#fff">
+        <img src="brand-gocase.png" alt="Gocase" class="bb-img bb-img-contain" loading="lazy" />
       </div>
       <!-- BODY ACTION -->
       <div class="brand-blob" style="background:#0A0A0A">
-        <div class="bb-content">
-          <div class="bb-bodyaction">
-            <svg viewBox="0 0 22 28" width="14" height="22" aria-hidden="true" style="margin-right:6px"><path d="M14 0 L0 16 L9 16 L6 28 L22 11 L13 11 Z" fill="#FFB12B"/></svg>
-            <div>
-              <div>BODY</div>
-              <div>ACTION</div>
-            </div>
-          </div>
-        </div>
+        <img src="brand-bodyaction.png" alt="Body Action" class="bb-img bb-img-cover" loading="lazy" style="object-fit: contain; padding: 8%;" />
       </div>
       <!-- SPOILER -->
       <div class="brand-blob" style="background:#7A0E22">
-        <div class="bb-content">
-          <div class="bb-spoiler">SPO<span class="bang">!</span>LER</div>
-        </div>
+        <img src="brand-spoiler.png" alt="Spoiler" class="bb-img bb-img-cover" loading="lazy" />
       </div>
       <!-- +Mu -->
-      <div class="brand-blob" style="background:#0A0A0A">
-        <div class="bb-content">
-          <div class="bb-mu">+<span class="mu">Mu</span></div>
-        </div>
+      <div class="brand-blob" style="background:#1FA2DD">
+        <img src="brand-mumais.png" alt="+Mu" class="bb-img bb-img-contain" loading="lazy" />
       </div>
     </div>
 
@@ -2319,7 +2299,7 @@
           <h3>Produto</h3>
         </div>
         <ul>
-          <li>Definição do <b>SKU Hero</b> certo</li>
+          <li>Definição do <b>SKU Hero</b></li>
           <li>Produto <b>TikTok-first</b>, com hook visual</li>
           <li>Estratégia de <b>oferta + bundles</b></li>
         </ul>
@@ -2334,7 +2314,7 @@
         <ul>
           <li>Comissão alvo de <b>10–15%</b></li>
           <li>Estratégia <b>"bola de neve"</b></li>
-          <li><b>Efeito halo</b> entre creators</li>
+          <li><b>Efeito halo</b></li>
         </ul>
         <div class="letter">C</div>
       </div>
@@ -2364,7 +2344,7 @@
         Um time que <span class="serif-it" style="color: var(--cyan);">vive</span> de criar resultado.
       </h2>
       <p class="lead">
-        Mais de 50 pessoas dedicadas entre estratégia, performance, creators e operação para sua marca escalar no TikTok Shop.
+        Um time de pessoas dedicadas entre estratégia, performance, creators e operação para sua marca escalar no TikTok Shop.
       </p>
     </div>
     <div class="team-photo">
