@@ -44,7 +44,8 @@
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scrollbar-width: none; }
+  html::-webkit-scrollbar { display: none; }
   body {
     font-family: var(--body);
     color: var(--paper);
@@ -171,36 +172,40 @@
 
   .hero {
     position: relative;
-    background:
-      linear-gradient(180deg, rgba(6, 8, 24, .85) 0%, rgba(10, 11, 18, .95) 60%, rgba(10, 11, 18, 1) 100%),
-      radial-gradient(60% 80% at 80% 0%, rgba(23, 66, 230, .35), transparent 60%),
-      radial-gradient(50% 60% at 15% 40%, rgba(234, 26, 78, .18), transparent 70%),
-      #060818;
+    background: #060818;
     padding: 24px 0 80px;
     overflow: hidden;
   }
 
-  /* Founder hook — landscape photo card right above the headline */
-  .hero-founder {
-    position: relative;
-    width: 100%;
-    max-width: 360px;
-    aspect-ratio: 5 / 3;
-    margin: 0 0 26px;
-    border-radius: 18px;
-    overflow: hidden;
-    background: #0a0a0a;
-    border: 1px solid rgba(255,255,255,.10);
-    box-shadow:
-      0 24px 60px -24px rgba(23, 66, 230, .55),
-      0 8px 20px -10px rgba(0,0,0,.6);
+  /* Full-bleed founder photo that fades into the hero background */
+  .hero-photo {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 520px;
+    z-index: 0;
+    pointer-events: none;
   }
-  .hero-founder img {
-    position: absolute; inset: 0;
+  .hero-photo img {
     width: 100%; height: 100%;
     object-fit: cover;
-    object-position: 50% 65%;
+    object-position: 50% 28%;
     display: block;
+  }
+  .hero-photo::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 80% at 80% 0%, rgba(23, 66, 230, .40), transparent 60%),
+      radial-gradient(50% 60% at 15% 40%, rgba(234, 26, 78, .14), transparent 70%),
+      linear-gradient(180deg, rgba(6, 8, 24, .35) 0%, rgba(6, 8, 24, .15) 30%, rgba(10, 11, 18, .55) 65%, rgba(10, 11, 18, 1) 100%);
+  }
+  .hero-photo::after {
+    /* extra soft fade so the photo blends seamlessly into the dark below */
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 40%;
+    background: linear-gradient(180deg, transparent 0%, #060818 100%);
   }
 
   .hero::after {
@@ -215,10 +220,10 @@
             mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
     pointer-events: none;
   }
-  .hero > * { position: relative; z-index: 1; }
+  .hero > *:not(.hero-photo) { position: relative; z-index: 1; }
 
   .hero-inner {
-    padding: 40px 0 0;
+    padding: 360px 0 0;
     display: block;
     max-width: 920px;
   }
@@ -859,8 +864,13 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path fill='black' d='M100,2 C108,2 114,10 122,12 C130,14 138,8 144,14 C150,20 144,28 148,36 C152,44 162,46 164,54 C166,62 158,68 160,76 C162,84 172,90 170,98 C168,106 158,108 158,116 C158,124 168,130 166,138 C164,146 154,144 150,152 C146,160 152,168 144,172 C136,176 130,168 122,170 C114,172 108,182 100,180 C92,178 88,170 80,168 C72,166 64,172 58,166 C52,160 58,152 54,144 C50,136 40,134 38,126 C36,118 44,112 42,104 C40,96 30,90 32,82 C34,74 44,72 44,64 C44,56 34,50 36,42 C38,34 48,36 52,28 C56,20 50,12 58,8 C66,4 72,12 80,10 C88,8 92,0 100,2 Z'/></svg>") center/contain no-repeat;
-            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path fill='black' d='M100,2 C108,2 114,10 122,12 C130,14 138,8 144,14 C150,20 144,28 148,36 C152,44 162,46 164,54 C166,62 158,68 160,76 C162,84 172,90 170,98 C168,106 158,108 158,116 C158,124 168,130 166,138 C164,146 154,144 150,152 C146,160 152,168 144,172 C136,176 130,168 122,170 C114,172 108,182 100,180 C92,178 88,170 80,168 C72,166 64,172 58,166 C52,160 58,152 54,144 C50,136 40,134 38,126 C36,118 44,112 42,104 C40,96 30,90 32,82 C34,74 44,72 44,64 C44,56 34,50 36,42 C38,34 48,36 52,28 C56,20 50,12 58,8 C66,4 72,12 80,10 C88,8 92,0 100,2 Z'/></svg>") center/contain no-repeat;
+    border-radius: 24px;
+    overflow: hidden;
+    padding: 16px;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,.06),
+      0 1px 0 rgba(255,255,255,.08) inset,
+      0 10px 30px -18px rgba(0,0,0,.45);
   }
   .bb-content { text-align: center; line-height: 1; padding: 6px; }
 
@@ -1765,7 +1775,7 @@
 
     /* HERO — punchier, less air */
     .hero { padding: 18px 0 56px; }
-    .hero-inner { padding: 28px 0 0; gap: 28px; }
+    .hero-inner { padding: 220px 0 0; gap: 28px; }
     .hero h1 { font-size: clamp(34px, 8.6vw, 44px); line-height: 1.04; }
     .hero-sub { font-size: 15px; margin-top: 18px; }
     .hero-cta-row { margin-top: 26px; gap: 16px; flex-direction: column; align-items: stretch; }
@@ -1907,6 +1917,9 @@
 
 <!-- =================== HERO =================== -->
 <header class="hero" data-screen-label="Hero">
+  <figure class="hero-photo">
+    <img src="matheus-tiktok-hq.jpeg" alt="Matheus, CEO da Amplify, na sede do TikTok" />
+  </figure>
   <div class="wrap">
     <nav class="nav">
       <a class="logo" href="#">
@@ -1929,14 +1942,10 @@
             <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
               <circle cx="5" cy="5" r="4" fill="currentColor"/>
             </svg>
-            TikTok Shop · Certified
+            TikTok Shop
           </span>
           <span>Agência parceira oficial</span>
         </div>
-
-        <figure class="hero-founder">
-          <img src="matheus-tiktok-hq.jpeg" alt="Matheus, CEO da Amplify, na sede do TikTok" />
-        </figure>
 
         <h1>
           <span class="big">O plano para transformar o</span><br/>
@@ -2435,7 +2444,7 @@
         </svg>
       </div>
       <h3>Aplicação enviada!</h3>
-      <p>Nosso time vai analisar seu perfil. Para acelerar o processo, fale agora com o Luan diretamente no WhatsApp.</p>
+      <p>Nosso time vai analisar seu perfil. Para acelerar o processo, fale agora com um especialista diretamente no WhatsApp.</p>
       <a class="wa-btn" id="whatsappLink" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8 8 0 0 0 6.1 17l-1.1 4.1 4.2-1.1a8 8 0 0 0 8.4-13.7zM12 19.5a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.5.7.7-2.5-.2-.3a7.4 7.4 0 1 1 13.7-5.6A7.4 7.4 0 0 1 12 19.5zm4.1-5.6c-.2-.1-1.3-.7-1.5-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.2-.3.2-.5.1a6 6 0 0 1-3-2.6c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.4c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.5 3.9 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1 0-.1-.2-.2-.4-.3z"/></svg>
         Falar no WhatsApp
