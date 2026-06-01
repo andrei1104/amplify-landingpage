@@ -2514,13 +2514,13 @@ function buildWhatsappURL() {
   const msg = [
     `Olá, Luan! Acabei de preencher o formulário da Amplify. Seguem meus dados:`,
     ``,
-    `👤 Nome: ${answers.lead || "-"}`,
-    `🏢 Empresa: ${answers.empresa || "-"}`,
-    `📸 Instagram: ${answers.instagram || "-"}`,
-    `💰 Faturamento mensal: ${answers.faturamentoMensal || "-"}`,
-    `🛍️ Faturamento TikTok Shop: ${answers.faturamentoTikTok || "-"}`,
-    `✅ Já tem loja no TikTok Shop: ${answers.jaTemLoja || "-"}`,
-    `⚡ Maior dificuldade: ${answers.dificuldade || "-"}`,
+    `Nome: ${answers.lead || "-"}`,
+    `Empresa: ${answers.empresa || "-"}`,
+    `Instagram: ${answers.instagram || "-"}`,
+    `Faturamento mensal: ${answers.faturamentoMensal || "-"}`,
+    `Faturamento TikTok Shop: ${answers.faturamentoTikTok || "-"}`,
+    `Já tem loja no TikTok Shop: ${answers.jaTemLoja || "-"}`,
+    `Maior dificuldade: ${answers.dificuldade || "-"}`,
   ].join("\n");
   return `https://wa.me/5547997478858?text=${encodeURIComponent(msg)}`;
 }
