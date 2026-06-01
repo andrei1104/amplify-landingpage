@@ -2552,6 +2552,18 @@ const QUESTIONS = [
 let currentStep = 0;
 const answers = {};
 
+/* ── UTM capture ── */
+const _utmParams = (function() {
+  const p = new URLSearchParams(window.location.search);
+  return {
+    utm_source:   p.get("utm_source")   || "",
+    utm_medium:   p.get("utm_medium")   || "",
+    utm_campaign: p.get("utm_campaign") || "",
+    utm_content:  p.get("utm_content")  || "",
+    utm_term:     p.get("utm_term")     || "",
+  };
+})();
+
 const modal      = document.getElementById("formModal");
 const modalBody  = document.getElementById("modalBody");
 const modalFoot  = document.getElementById("modalFoot");
@@ -2775,7 +2787,7 @@ async function submitForm() {
       await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...answers, _source: "Amplify LP", _ts: new Date().toISOString() })
+        body: JSON.stringify({ ...answers, ..._utmParams, _source: "Amplify LP", _ts: new Date().toISOString() })
       });
     } catch (e) {
       console.warn("Webhook falhou — dados gravados localmente.", e);
