@@ -2496,11 +2496,24 @@
 */
 const WEBHOOK_URL = "https://n8n.amplifyugc.co/webhook/landing-page-vendas";
 
-const WHATSAPP_URL = "https://wa.me/5547997478858?text=Ol%C3%A1%2C+tudo+bem%3F+Conheci+voc%C3%AAs+pela+Mans%C3%A3o+de+Lives%2C+apliquei+minha+marca+no+formul%C3%A1rio+e+queria+conversar+para+saber+mais+sobre+a+solu%C3%A7%C3%A3o+da+Amplify.&utm_source=chatgpt.com";
+function buildWhatsappURL() {
+  const msg = [
+    `Olá, Luan! Acabei de preencher o formulário da Amplify. Seguem meus dados:`,
+    ``,
+    `👤 Nome: ${answers.lead || "-"}`,
+    `🏢 Empresa: ${answers.empresa || "-"}`,
+    `📸 Instagram: ${answers.instagram || "-"}`,
+    `💰 Faturamento mensal: ${answers.faturamentoMensal || "-"}`,
+    `🛍️ Faturamento TikTok Shop: ${answers.faturamentoTikTok || "-"}`,
+    `✅ Já tem loja no TikTok Shop: ${answers.jaTemLoja || "-"}`,
+    `⚡ Maior dificuldade: ${answers.dificuldade || "-"}`,
+  ].join("\n");
+  return `https://wa.me/5547997478858?text=${encodeURIComponent(msg)}`;
+}
 
 /* ======================================================================= */
 
-document.getElementById("whatsappLink").href = WHATSAPP_URL;
+/* whatsapp link é atualizado dinamicamente no submitForm */
 
 const QUESTIONS = [
   { id: "conheceu", type: "choice", label: "Como você conheceu a Amplify?",
@@ -2797,6 +2810,7 @@ async function submitForm() {
   }
 
   /* show done screen */
+  document.getElementById("whatsappLink").href = buildWhatsappURL();
   modalBody.style.display = "none";
   modalFoot.style.display = "none";
   doneScreen.classList.add("show");
